@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+</head>
+<body>
+<h1>Total Number of Books:{{count}}</h1>
+<h1>Page Number:{{page.number}}</h1>
+
+{% for book in page.object_list %}
+<div class="book-item">{{book.title}} by {{book.author}}</div><br>
+{% endfor %}
+
+<div class="paginator">
+
+{%if page.has_previous%}
+<a href="{% url 'books' %}?page={{page.previous_page_number}}">Previous page</a>
+    {%endif%}
+    {%if page.has_next%}
+    <a href="{% url 'books' %}?page={{page.next_page_number}}">Next page</a>
+    {%endif%}
+</div>
+</body>
+</html>
